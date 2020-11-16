@@ -74,7 +74,14 @@ jobs:
     
     #Fetch and install libvirt provider
     - name: Install provider
-      run: wget -O ./terraform-provider-libvirt_v0.6.3.tar.gz https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.3/terraform-provider-libvirt-0.6.3+git.1604843676.67f4f2aa.Ubuntu_20.04.amd64.tar.gz && tar xvf terraform-provider-libvirt_v0.6.3.tar.gz --keep-newer-files && mv terraform-provider-libvirt ~/.terraform.d/plugins/terraform-provider-libvirt_v0.6.3 && rm *.tar.gz
+      run: |
+        wget -O ./terraform-provider-libvirt_v0.6.3.tar.gz https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.3/terraform-provider-libvirt-0.6.3+git.1604843676.67f4f2aa.Ubuntu_20.04.amd64.tar.gz
+        tar xvf terraform-provider-libvirt_v0.6.3.tar.gz --keep-newer-files
+        ls -la
+        ls -la ~
+        ls -la ~/.terraform
+        mv terraform-provider-libvirt ~/.terraform.d/plugins/terraform-provider-libvirt_v0.6.3
+        rm *.tar.gz
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
