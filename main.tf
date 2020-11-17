@@ -1,4 +1,4 @@
-provider "libvirt" {
+provider "spc-akvanvig-lab-vip.p1.lab.basefarm.net/tf/libvirt" {
   uri = "qemu:///system"
 }
 
