@@ -70,16 +70,16 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-        terraform_version: 0.12.x
+        terraform_version: 0.13.x
     
     #Fetch and install libvirt provider
     - name: Install provider
       run: |
-        mkdir -p ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.2/linux_amd64
+        mkdir -p $TERRAFORM_CLI_PATH/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.2/linux_amd64
         wget -O ./terraform-provider-libvirt_v0.6.3.tar.gz https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.3/terraform-provider-libvirt-0.6.3+git.1604843676.67f4f2aa.Ubuntu_20.04.amd64.tar.gz
         tar xvf terraform-provider-libvirt_v0.6.3.tar.gz --keep-newer-files
         rm *.tar.gz
-        mv terraform-provider-libvirt ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.3/linux_amd64
+        mv terraform-provider-libvirt $TERRAFORM_CLI_PATH/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.3/linux_amd64
         
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
