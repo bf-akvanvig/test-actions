@@ -1,3 +1,13 @@
+terraform {
+ required_version = ">= 0.13"
+  required_providers {
+    libvirt = {
+      source  = "dmacvicar/libvirt"
+      version = "0.6.3"
+    }
+  }
+}
+
 provider "spc-akvanvig-lab-vip.p1.lab.basefarm.net/tf/libvirt" {
   uri = "qemu:///system"
 }
