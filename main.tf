@@ -8,7 +8,7 @@ terraform {
   }
 }
 
-provider "spc-akvanvig-lab-vip.p1.lab.basefarm.net/tf/libvirt" {
+provider "libvirt" {
   uri = "qemu:///system"
 }
 
