@@ -97,6 +97,7 @@ jobs:
       run: |
         terraform -v
         terraform fmt -diff
+        terraform init
       # terraform fmt -check
 
     # Generates an execution plan for Terraform
