@@ -53,7 +53,7 @@ on:
 jobs:
   terraform:
     name: 'Terraform'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -76,8 +76,8 @@ jobs:
     - name: Install provider
       run: |
         uname -a
-        export version="0.6.2"
-        export downloadURLlibvirt="https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.1/terraform-provider-libvirt-0.6.1+git.1578064534.db13b678.Ubuntu_18.04.amd64.tar.gz"
+        export version="0.6.3"
+        export downloadURLlibvirt="https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.3/terraform-provider-libvirt-0.6.3+git.1604843676.67f4f2aa.Ubuntu_20.04.amd64.tar.gz"
         echo "-- creating provider_installation file and folders for terraform filesystem_mirror --"
         echo "provider_installation {filesystem_mirror {path = \"$PWD/plugins/\",include = [\"registry.terraform.io/dmacvicar/libvirt\"]},direct {exclude = [\"registry.terraform.io/dmacvicar/libvirt\"]}}" > ~/.terraformrc
         mkdir -p ./plugins/registry.terraform.io/dmacvicar/libvirt/$version/linux_amd64
