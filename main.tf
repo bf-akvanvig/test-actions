@@ -8,13 +8,13 @@ terraform {
   }
 }
 
-#provider "libvirt" {
-#  uri = "qemu:///system"
-#}
-
 provider "libvirt" {
-  uri   = "qemu+ssh://spc-akvanvig-lab-lb7000.p1.lab.basefarm.net:7000/system"
+  uri = "qemu:///system"
 }
+
+#provider "libvirt" {
+#  uri   = "qemu+ssh://spc-akvanvig-lab-lb7000.p1.lab.basefarm.net:7000/system"
+#}
 
 resource "libvirt_volume" "centos7-qcow2" {
   name   = "centos7.qcow2"
