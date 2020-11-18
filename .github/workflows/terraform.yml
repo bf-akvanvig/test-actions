@@ -92,6 +92,7 @@ jobs:
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
+      continue-on-error: true
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
