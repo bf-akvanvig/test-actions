@@ -75,8 +75,8 @@ jobs:
     #Fetch and install libvirt provider
     - name: Install provider
       run: |
-        export version="0.6.2"
-        export downloadURLlibvirt="https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.2/terraform-provider-libvirt-0.6.2+git.1585292411.8cbe9ad0.Ubuntu_18.04.amd64.tar.gz"
+        export version="0.6.3"
+        export downloadURLlibvirt="https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.3/terraform-provider-libvirt-0.6.3+git.1604843676.67f4f2aa.Ubuntu_20.04.amd64.tar.gz"
         echo "-- creating provider_installation file and folders for terraform filesystem_mirror --"
         echo "provider_installation {filesystem_mirror {path = \"$PWD/plugins/\",include = [\"registry.terraform.io/dmacvicar/libvirt\"]},direct {exclude = [\"registry.terraform.io/dmacvicar/libvirt\"]}}" > ~/.terraformrc
         mkdir -p ./plugins/registry.terraform.io/dmacvicar/libvirt/$version/linux_amd64
