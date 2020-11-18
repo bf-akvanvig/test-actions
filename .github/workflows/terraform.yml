@@ -74,26 +74,16 @@ jobs:
     
     #Fetch and install libvirt provider
     - name: Install provider
-      #run: |
-      #  mkdir -p ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.2/linux_amd64
-      #  wget -O ./terraform-provider-libvirt_v0.6.3.tar.gz https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.3/terraform-provider-libvirt-0.6.3+git.1604843676.67f4f2aa.Ubuntu_20.04.amd64.tar.gz
-      #  tar xvf terraform-provider-libvirt_v0.6.3.tar.gz --keep-newer-files
-      #  rm *.tar.gz
-      #  mv terraform-provider-libvirt ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.3/linux_amd64
       run: |
+        export version="0.6.2"
+        export downloadURLlibvirt="https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.2/terraform-provider-libvirt-0.6.2+git.1585292411.8cbe9ad0.Ubuntu_18.04.amd64.tar.gz"
+        echo "-- creating provider_installation file and folders for terraform filesystem_mirror --"
         echo "provider_installation {filesystem_mirror {path = \"$PWD/plugins/\",include = [\"registry.terraform.io/dmacvicar/libvirt\"]},direct {exclude = [\"registry.terraform.io/dmacvicar/libvirt\"]}}" > ~/.terraformrc
-        mkdir -p ./plugins/registry.terraform.io/dmacvicar/libvirt/0.6.3/linux_amd64
-        echo "---"
-        wget -O terraform-provider-libvirt_v0.6.3.tar.gz https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.3/terraform-provider-libvirt-0.6.3+git.1604843676.67f4f2aa.Ubuntu_20.04.amd64.tar.gz
-        tar xvf terraform-provider-libvirt_v0.6.3.tar.gz --keep-newer-files
-        mv terraform-provider-libvirt plugins/registry.terraform.io/dmacvicar/libvirt/0.6.3/linux_amd64/
-        echo "---"
-        ls -laR plugins
-        echo "---"
-        ls -la ~
-        echo "---"
-        cat ~/.terraformrc
-        
+        mkdir -p ./plugins/registry.terraform.io/dmacvicar/libvirt/$version/linux_amd64
+        echo "-- Fetching libvirt provider --"
+        wget -O terraform-provider-libvirt_v$version.tar.gz $downloadURLlibvirt
+        tar xvf terraform-provider-libvirt_v$version.tar.gz --keep-newer-files
+        mv terraform-provider-libvirt plugins/registry.terraform.io/dmacvicar/libvirt/$version/linux_amd64/        
         
         
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
