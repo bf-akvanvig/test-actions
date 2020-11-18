@@ -81,7 +81,7 @@ jobs:
       #  rm *.tar.gz
       #  mv terraform-provider-libvirt ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.3/linux_amd64
       run: |
-        echo "provider_installation {filesystem_mirror {path = '$PWD/plugins/',include = ['registry.terraform.io/dmacvicar/libvirt']},direct {exclude = ['registry.terraform.io/dmacvicar/libvirt']}}" > ~/.terraformrc
+        echo "echo "provider_installation {filesystem_mirror {path = \"$PWD/plugins/\",include = [\"registry.terraform.io/dmacvicar/libvirt\"]},direct {exclude = [\"registry.terraform.io/dmacvicar/libvirt\"]}}" > ~/.terraformrc
         mkdir -p ./plugins/registry.terraform.io/dmacvicar/libvirt/0.6.3/linux_amd64
         echo "---"
         wget -O terraform-provider-libvirt_v0.6.3.tar.gz https://github.com/dmacvicar/terraform-provider-libvirt/releases/download/v0.6.3/terraform-provider-libvirt-0.6.3+git.1604843676.67f4f2aa.Ubuntu_20.04.amd64.tar.gz
