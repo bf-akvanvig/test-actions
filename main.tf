@@ -16,6 +16,7 @@ provider "libvirt" {
   uri   = "qemu+ssh://libvirt-user@81.166.193.189:7000/system"
 }
 
+/*
 resource "libvirt_volume" "centos7-qcow2" {
   name   = "centos7.qcow2"
   pool   = "default"
@@ -50,3 +51,4 @@ resource "libvirt_domain" "test-vm1" {
     autoport    = true
   }
 }
+*/
