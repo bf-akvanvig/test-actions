@@ -91,7 +91,7 @@ jobs:
       run: |
         sudo apt install qemu-kvm libvirt-daemon-system -y
     
-    - name: Get keys
+    - name: Get key
       env:
         SSH_KEY: ${{ secrets.PRIVATEKEY }}
       run: |
@@ -101,7 +101,6 @@ jobs:
         echo "IdentityFile ~/.ssh/key" > ~/.ssh/config
         echo "Host *" >> ~/.ssh/config
         echo "    StrictHostKeyChecking no" >> ~/.ssh/config
-        ssh -l libvirt-user 81.166.193.189 -p 7000 hostname
         
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
