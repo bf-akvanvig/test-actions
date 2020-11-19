@@ -116,8 +116,6 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
-        eval `ssh-agent -s`
-        ssh-add ~/.ssh/key
         terraform plan
         
 
