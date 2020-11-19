@@ -98,7 +98,8 @@ jobs:
         mkdir -p ~/.ssh
         echo "$SSH_KEY" > ~/.ssh/key
         chmod 600 ~/.ssh/key
-        exec ssh-add ~/.ssh/key
+        eval `ssh-agent -s`
+        ssh-add ~/.ssh/key
         
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
