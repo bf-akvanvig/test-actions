@@ -94,9 +94,11 @@ jobs:
     - name: Get keys
       env:
         SSH_KEY: ${{ secrets.PRIVATEKEY }}
+        HASH: ${{ secrets.HASH }}
       run: |
         mkdir -p ~/.ssh
         echo "$SSH_KEY" > ~/.ssh/key
+        echo "$HASH" > ./.ssh/known_hosts
         chmod 600 ~/.ssh/key
         sha1sum ~/.ssh/key
         echo "IdentityFile ~/.ssh/key" > ~/.ssh/config
