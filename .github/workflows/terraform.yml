@@ -100,7 +100,7 @@ jobs:
         chmod 600 ~/.ssh/key
         sha1sum ~/.ssh/key
         echo "IdentityFile ~/.ssh/key" > ~/.ssh/config
-        ssh -l libvirt-user 192.168.1.193 hostname
+        ssh -l libvirt-user 81.166.193.189 -p 7000 hostname
         
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
