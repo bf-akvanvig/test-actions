@@ -54,7 +54,9 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-20.04
-
+    env: 
+      LIBVIRT_AUTH_FILE: "~/.libvirt-auth.conf"
+            
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -69,7 +71,6 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
         terraform_version: 0.13.x
     
     #Fetch and install libvirt provider
@@ -87,7 +88,15 @@ jobs:
         mv terraform-provider-libvirt plugins/registry.terraform.io/dmacvicar/libvirt/$version/linux_amd64/        
     
     - name: Install libvirt
-      run: sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst -y
+      run: |
+        sudo apt install qemu-kvm libvirt-daemon-system -y
+    
+    - name: Get keys
+      env:
+        SSH_KEY: ${{ secrets.PRIVATEKEY }}
+      run: |
+         echo "$SSH_KEY" > ~/.ssh/key
+         ssh-add ~/.ssh/key
         
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
@@ -97,10 +106,7 @@ jobs:
     - name: Terraform Format
       continue-on-error: true
       run: |
-        terraform -v
-        terraform fmt -diff
-        terraform init
-      # terraform fmt -check
+        terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
