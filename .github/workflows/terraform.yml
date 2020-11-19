@@ -87,9 +87,9 @@ jobs:
         tar xvf terraform-provider-libvirt_v$version.tar.gz --keep-newer-files
         mv terraform-provider-libvirt plugins/registry.terraform.io/dmacvicar/libvirt/$version/linux_amd64/        
     
-    #- name: Install libvirt
-    #  run: |
-    #    sudo apt install qemu-kvm libvirt-daemon-system -y
+    - name: Install libvirt
+      run: |
+        sudo apt install qemu-kvm libvirt-daemon-system -y
     
     - name: Get keys
       env:
@@ -98,8 +98,9 @@ jobs:
         mkdir -p ~/.ssh
         echo "$SSH_KEY" > ~/.ssh/key
         chmod 600 ~/.ssh/key
-        eval `ssh-agent -s`
-        ssh-add ~/.ssh/key
+        echo "IdentityFile ~/.ssh/key" > ~/.ssh/config
+      #eval `ssh-agent -s`
+      #ssh-add ~/.ssh/key
         
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
