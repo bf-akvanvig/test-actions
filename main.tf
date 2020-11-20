@@ -25,7 +25,7 @@ resource "libvirt_volume" "centos7-qcow2" {
   format = "qcow2"
 }
 
-/*
+
 # Define KVM domain to create
 resource "libvirt_domain" "test-vm1" {
   name   = "test-vm1"
@@ -52,4 +52,4 @@ resource "libvirt_domain" "test-vm1" {
     autoport    = true
   }
 }
-*/
+
