@@ -89,7 +89,7 @@ jobs:
     
     - name: Install libvirt
       run: |
-        sudo apt install qemu-kvm libvirt-daemon-system -y --fix-missing
+        sudo apt-get install qemu-kvm libvirt-daemon-system -y --fix-missing
     
     - name: Get key
       env:
