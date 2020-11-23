@@ -30,7 +30,7 @@ resource "libvirt_volume" "ubuntu-qcow2" {
   source = "https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img"
   format = "qcow2"
 }
-
+/*
 data "template_file" "user_data" {
   template = file("${path.module}/cloud_init.cfg")
 }
@@ -49,14 +49,14 @@ resource "libvirt_cloudinit_disk" "commoninit" {
   network_config = data.template_file.network_config.rendered
   pool           = libvirt_pool.ubuntu.name
 }
-
+*/
 # Create the machine
 resource "libvirt_domain" "domain-ubuntu" {
   name   = "ubuntu-terraform"
   memory = "512"
   vcpu   = 1
 
-  cloudinit = libvirt_cloudinit_disk.commoninit.id
+  #cloudinit = libvirt_cloudinit_disk.commoninit.id
 
   network_interface {
     network_name = "default"
