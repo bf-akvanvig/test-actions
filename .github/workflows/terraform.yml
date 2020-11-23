@@ -87,9 +87,9 @@ jobs:
         tar xvf terraform-provider-libvirt_v$version.tar.gz --keep-newer-files
         mv terraform-provider-libvirt plugins/registry.terraform.io/dmacvicar/libvirt/$version/linux_amd64/        
     
-    - name: Install libvirt
+    - name: Install libvirt & mkisofs
       run: |
-        sudo apt-get install qemu-kvm libvirt-daemon-system -y --fix-missing
+        sudo apt-get install qemu-kvm libvirt-daemon-system mkisofs -y --fix-missing
     
     - name: Get key
       env:
