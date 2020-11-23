@@ -50,16 +50,23 @@ resource "libvirt_cloudinit_disk" "commoninit" {
   pool           = libvirt_pool.ubuntu.name
 }
 
+resource "libvirt_network" "tf" {
+  name      = "tf"
+  domain    = "tf.local"
+  mode      = "nat"
+  addresses = ["10.0.100.0/24"]
+}
+
 # Create the machine
 resource "libvirt_domain" "domain-ubuntu" {
   name   = "ubuntu-terraform"
   memory = "512"
   vcpu   = 1
 
-  #cloudinit = libvirt_cloudinit_disk.commoninit.id
+  cloudinit = libvirt_cloudinit_disk.commoninit.id
 
   network_interface {
-    network_name = "default"
+    network_name = "tf"
   }
 
   # IMPORTANT: this is a known bug on cloud images, since they expect a console
