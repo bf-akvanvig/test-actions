@@ -13,7 +13,7 @@ terraform {
 #}
 
 provider "libvirt" {
-  uri   = "qemu+ssh://libvirt-user@81.166.193.189:7000/system"
+  uri   = "qemu+ssh://libvirt-user@192.168.1.154/system"
 }
 
 
